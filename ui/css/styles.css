@@ -1,0 +1,45 @@
+body {
+  font-family: sans-serif;
+  background: #f9f9f9;
+  margin: 0;
+  padding: 20px;
+  text-align: center;
+}
+
+.contenedores {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 30px;
+  margin-bottom: 40px;
+}
+
+.contenedor {
+   width: 150px;
+  padding: 10px;
+  background-color: #eee;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.contenedor img {
+  width: 100px;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+.basura {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.item {
+  background: white;
+  padding: 10px 15px;
+  border-radius: 8px;
+  box-shadow: 0 0 5px #aaa;
+  cursor: grab;
+}
+

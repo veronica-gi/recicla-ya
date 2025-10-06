@@ -2,13 +2,54 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Juego de Reciclaje</title>
   <link rel="stylesheet" href="ui/css/styles.css" />
 </head>
 <body>
-  <div id="app"></div>
+
+  <header>
+    <h1>Juego de Reciclaje</h1>
+  </header>
+
+  <main>
+    <section class="zona-contenedores">
+      <div class="contenedores">
+        <div class="contenedor azul" data-color="azul">
+          <img src="ui/assets/contenedor-azul.png" alt="Contenedor Azul" />
+          <span>Papel</span>
+        </div>
+        <div class="contenedor amarillo" data-color="amarillo">
+          <img src="ui/assets/contenedor-amarillo.png" alt="Contenedor Amarillo" />
+          <span>Plástico</span>
+        </div>
+        <div class="contenedor verde" data-color="verde">
+          <img src="ui/assets/contenedor-verde.png" alt="Contenedor Verde" />
+          <span>Vidrio</span>
+        </div>
+        <div class="contenedor marron" data-color="marron">
+          <img src="ui/assets/contenedor-marron.png" alt="Contenedor Marrón" />
+          <span>Orgánico</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="zona-basura">
+      <div class="basura">
+        <div class="item" data-tipo="papel">📰 Papel</div>
+        <div class="item" data-tipo="vidrio">🍾 Vidrio</div>
+        <div class="item" data-tipo="plastico">🥤 Plástico</div>
+        <div class="item" data-tipo="organico">🍌 Orgánico</div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Juego de Reciclaje. Hecho por Verónica García.</p>
+  </footer>
 
   <script src="core/game.js"></script>
   <script src="ui/pages/gamePage.js"></script>
 </body>
 </html>
+
