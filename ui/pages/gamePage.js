@@ -16,17 +16,25 @@ const puntajeJuego = document.getElementById('puntaje-juego');
 // ==========================
 const catalogoBasura = [
   { nombre: "Botella de vidrio", emoji: "🍾", tipo: "vidrio" },
+  { nombre: "Copa de vino", emoji: "🍷", tipo: "vidrio" },
   { nombre: "Botella de plástico", emoji: "🥤", tipo: "plastico" },
-  { nombre: "Lata", emoji: "🥫", tipo: "plastico" },
+  { nombre: "Lata de refresco", emoji: "🥫", tipo: "plastico" },
   { nombre: "Brick", emoji: "🧃", tipo: "plastico" },
   { nombre: "Yogur", emoji: "🍶", tipo: "plastico" },
+  { nombre: "Yogur", emoji: "🥛", tipo: "plastico" },
   { nombre: "Papel", emoji: "📰", tipo: "papel" },
   { nombre: "Cartón", emoji: "📦", tipo: "papel" },
+  { nombre: "Sobres", emoji: "✉️", tipo: "papel" },
+  { nombre: "Libros", emoji: "📚", tipo: "papel" },
   { nombre: "Servilleta usada", emoji: "🧻", tipo: "organico" },
   { nombre: "Restos de comida", emoji: "🍝", tipo: "organico" },
   { nombre: "Restos de fruta", emoji: "🍌", tipo: "organico" },
   { nombre: "Plantas", emoji: "🌿", tipo: "organico" },
-  { nombre: "Tierra", emoji: "🪴", tipo: "organico" },
+    { nombre: "Manzana", emoji: "🍎", tipo: "organico" },
+  { nombre: "Verdura", emoji: "🥦", tipo: "organico" },
+  { nombre: "Pan", emoji: "🥖", tipo: "organico" },
+  { nombre: "Cáscara de huevo", emoji: "🥚", tipo: "organico" },
+  
 ];
 
 // ==========================
