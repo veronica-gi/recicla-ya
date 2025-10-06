@@ -72,5 +72,24 @@ body {
   height: 100%;
 }
 
+.item-cayendo {
+  position: absolute;
+  top: 0;
+  font-size: clamp(3rem, 6vw, 5rem);
+  cursor: grab;
+  user-select: none;
+  transition: transform 0.2s, opacity 0.3s;
+}
+
+.item-cayendo:hover {
+  transform: scale(1.3);
+  z-index: 10;
+}
+
+.item-cayendo.dragging {
+  opacity: 0.5;
+  transform: scale(1.1);
+}
+
 
 
