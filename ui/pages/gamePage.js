@@ -11,9 +11,6 @@ const puntajeJuego = document.getElementById('puntaje-juego');
 itemsBasura.forEach(item => {
   item.addEventListener('click', () => {
     basuraSeleccionada = item.getAttribute('data-tipo');
-    // Lanzamos evento para core con el tipo de basura seleccionada
-    document.dispatchEvent(new CustomEvent('basuraSeleccionada', { detail: { tipoBasura: basuraSeleccionada } }));
-    // Mensaje en UI
     mensajeJuego.textContent = `Has seleccionado: ${basuraSeleccionada}`;
   });
 });
@@ -26,12 +23,18 @@ contenedores.forEach(contenedor => {
       return;
     }
     const colorContenedor = contenedor.getAttribute('data-color');
-    // Lanzamos evento para core con el color seleccionado
-    document.dispatchEvent(new CustomEvent('contenedorSeleccionado', { detail: { colorContenedor } }));
+
+    // Lanzamos un solo evento con ambos datos para que core valide
+    document.dispatchEvent(new CustomEvent('validarReciclaje', {
+      detail: { tipoBasura: basuraSeleccionada, colorContenedor }
+    }));
+
+    // Reseteamos selección para que el usuario seleccione de nuevo basura
+    basuraSeleccionada = null;
   });
 });
 
-// Escuchamos mensajes que envia core
+// Escuchamos mensajes que envía core
 document.addEventListener('mensaje', e => {
   mensajeJuego.textContent = e.detail;
 });
@@ -39,7 +42,6 @@ document.addEventListener('mensaje', e => {
 // Escuchamos actualización de puntaje
 document.addEventListener('puntajeActualizado', e => {
   puntajeJuego.textContent = `Puntaje: ${e.detail}`;
-  // Reseteamos la selección para que el usuario seleccione otra basura
-  basuraSeleccionada = null;
 });
+
 
