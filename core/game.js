@@ -12,6 +12,8 @@ const tiposBasura = {
 
 // Puntuación inicial
 let puntaje = 0;
+let basuraProcesada = 0;
+const MAX_BASURA = 30; // número máximo de objetos por partida
 
 // ==========================
 // 🧩 FUNCIÓN DE VALIDACIÓN
@@ -26,9 +28,13 @@ function validarReciclaje(tipo, colorContenedor) {
 
 // Escucha cuando la UI envía una acción de reciclaje
 document.addEventListener('validarReciclaje', (e) => {
+  if (basuraProcesada >= MAX_BASURA) return;
+
   const { tipoBasura, colorContenedor } = e.detail;
 
   const acierto = validarReciclaje(tipoBasura, colorContenedor);
+
+  basuraProcesada++;
 
   if (acierto) {
     puntaje = Math.min(puntaje + 10, 100); // límite máximo 100
@@ -59,7 +65,21 @@ document.addEventListener('validarReciclaje', (e) => {
       detail: '🏆 ¡Excelente! Has alcanzado el máximo puntaje. Eres un verdadero experto del reciclaje.'
     }));
   }
+
+ if (basuraProcesada >= MAX_BASURA) {
+    let mensajeFinal = "🌍 ¡Juego terminado! Has completado la ronda.\n";
+
+    if (puntaje < 50) {
+      mensajeFinal += "Necesitas mejorar tus hábitos de reciclaje.";
+    } else if (puntaje < 100) {
+      mensajeFinal += "Buen trabajo, ¡eres un buen reciclador!";
+    } else {
+      mensajeFinal += "¡Excelente! Eres un experto del reciclaje ♻️";
+    }
+
+    document.dispatchEvent(new CustomEvent('finJuego', { detail: mensajeFinal }));
+  }
 });
 
-console.log("♻️ Lógica del juego cargada y lista para eventos.");
+console.log("♻️ Lógica del juego cargada y lista para eventos con límite de 30 objetos.");
 
