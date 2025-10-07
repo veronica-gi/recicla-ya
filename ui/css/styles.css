@@ -91,5 +91,49 @@ body {
   transform: scale(1.1);
 }
 
+/* Botón reiniciar juego */
+.boton-reiniciar {
+  position: fixed;      
+  bottom: 20px;
+  right: 20px;
+  background-color: #4CAF50; 
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 12px;
+  padding: 12px 20px;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+  transition: all 0.2s ease-in-out;
+  z-index: 1000; 
+}
+
+.boton-reiniciar:hover {
+  background-color: #45a049;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 8px rgba(0,0,0,0.3);
+}
+
+.boton-reiniciar:active {
+  transform: translateY(0);
+  box-shadow: 0 3px 5px rgba(0,0,0,0.2);
+}
+
+/* Footer separado con más espacio */
+.footer-section {
+  margin-top: 60px;       
+}
+
+.footer-juego {
+  padding: 20px 0;       
+  text-align: center;
+  background-color: #f1f1f1;
+  font-size: 0.9rem;
+  color: #555;
+  border-top: 2px solid #2e7d32;
+}
+
+
 
 
