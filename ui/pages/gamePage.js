@@ -71,7 +71,7 @@ contenedores.forEach(contenedor => {
 
 // Botón Reiniciar 
 const botonReiniciar = document.createElement('button');
-botonReiniciar.textContent = '🔄 Reiniciar juego';
+botonReiniciar.textContent = 'Reiniciar juego';
 botonReiniciar.className = 'boton-reiniciar';
 document.body.appendChild(botonReiniciar);
 

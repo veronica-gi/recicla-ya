@@ -6,6 +6,16 @@ body {
   text-align: center;
 }
 
+header h1 {
+  text-align: center;
+  color: #2e7d32;           
+  font-family: 'Arial Black', sans-serif;
+  font-size: 2.5rem;
+  margin: 20px 0;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.3); 
+}
+
+
 .contenedores {
   display: flex;
   flex-direction: row;
