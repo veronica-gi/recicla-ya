@@ -1,85 +1,147 @@
-// ==========================
-// 🎯 LÓGICA DEL JUEGO (CORE)
-// ==========================
+// LÓGICA DEL JUEGO (CORE)
 
-// Relación entre tipo de basura y color del contenedor correspondiente
+// Relación tipo de basura → color contenedor
 const tiposBasura = {
-  papel: 'azul',        // papel y cartón
-  vidrio: 'verde',      // botellas, frascos
-  plastico: 'amarillo', // plásticos, bricks, latas, yogures
-  organico: 'marron'    // restos de comida, plantas, servilletas, tierra
+  papel: 'azul',
+  vidrio: 'verde',
+  plastico: 'amarillo',
+  organico: 'marron'
 };
 
-// Puntuación inicial
+// Catálogo de basura
+const catalogoBasura = [
+  { nombre: "Botella de vidrio", emoji: "🍾", tipo: "vidrio" },
+  { nombre: "Copa de vino", emoji: "🍷", tipo: "vidrio" },
+  { nombre: "Botella de plástico", emoji: "🥤", tipo: "plastico" },
+  { nombre: "Lata de refresco", emoji: "🥫", tipo: "plastico" },
+  { nombre: "Brick", emoji: "🧃", tipo: "plastico" },
+  { nombre: "Yogur", emoji: "🍶", tipo: "plastico" },
+  { nombre: "Yogur", emoji: "🥛", tipo: "plastico" },
+  { nombre: "Papel", emoji: "📰", tipo: "papel" },
+  { nombre: "Cartón", emoji: "📦", tipo: "papel" },
+  { nombre: "Sobres", emoji: "✉️", tipo: "papel" },
+  { nombre: "Libros", emoji: "📚", tipo: "papel" },
+  { nombre: "Servilleta usada", emoji: "🧻", tipo: "organico" },
+  { nombre: "Restos de comida", emoji: "🍝", tipo: "organico" },
+  { nombre: "Restos de fruta", emoji: "🍌", tipo: "organico" },
+  { nombre: "Plantas", emoji: "🌿", tipo: "organico" },
+  { nombre: "Manzana", emoji: "🍎", tipo: "organico" },
+  { nombre: "Verdura", emoji: "🥦", tipo: "organico" },
+  { nombre: "Pan", emoji: "🥖", tipo: "organico" },
+  { nombre: "Cáscara de huevo", emoji: "🥚", tipo: "organico" }
+];
+
+// Estado del juego
 let puntaje = 0;
 let basuraProcesada = 0;
-const MAX_BASURA = 30; // número máximo de objetos por partida
+let basuraGenerada = 0;  
+const MAX_BASURA = 30;   // límite total por partida
 
-// ==========================
-// 🧩 FUNCIÓN DE VALIDACIÓN
-// ==========================
+// Función de validación
 function validarReciclaje(tipo, colorContenedor) {
   return tiposBasura[tipo] === colorContenedor;
 }
 
-// ==========================
-// 🎮 EVENTOS PRINCIPALES
-// ==========================
+//  Generación controlada de basura
+function lanzarBasura() {
+  if (basuraGenerada >= MAX_BASURA) return;
 
-// Escucha cuando la UI envía una acción de reciclaje
-document.addEventListener('validarReciclaje', (e) => {
+  const item = catalogoBasura[Math.floor(Math.random() * catalogoBasura.length)];
+  basuraGenerada++;
+
+  // Enviar evento a la UI para que muestre la basura
+  document.dispatchEvent(new CustomEvent('crearBasura', { detail: item }));
+
+  // Si alcanzamos el límite, fin del juego
+  if (basuraGenerada >= MAX_BASURA) {
+    document.dispatchEvent(new CustomEvent('finJuego', {
+      detail: generarMensajeFinal()
+    }));
+  }
+}
+
+
+// Validar acción de reciclaje
+document.addEventListener('validarReciclaje', e => {
   if (basuraProcesada >= MAX_BASURA) return;
 
   const { tipoBasura, colorContenedor } = e.detail;
-
   const acierto = validarReciclaje(tipoBasura, colorContenedor);
 
   basuraProcesada++;
 
   if (acierto) {
-    puntaje = Math.min(puntaje + 10, 100); // límite máximo 100
+    puntaje = Math.min(puntaje + 10, 100);
     document.dispatchEvent(new CustomEvent('mensaje', {
       detail: `✅ ¡Correcto! Has reciclado bien (${tipoBasura}).`
     }));
   } else {
-    puntaje = Math.max(puntaje - 5, 0); // evita puntajes negativos
+    puntaje = Math.max(puntaje - 5, 0);
     document.dispatchEvent(new CustomEvent('mensaje', {
       detail: `❌ Incorrecto, esa basura no va en ese contenedor.`
     }));
   }
 
-  // Notificar actualización de puntaje
   document.dispatchEvent(new CustomEvent('puntajeActualizado', { detail: puntaje }));
 
-  // Evaluar nivel de reciclaje del jugador
   if (puntaje < 50) {
     document.dispatchEvent(new CustomEvent('nivelReciclaje', {
       detail: '♻️ Necesitas mejorar en reciclaje. ¡Sigue practicando!'
     }));
-  } else if (puntaje >= 50 && puntaje < 100) {
+  } else if (puntaje < 100) {
     document.dispatchEvent(new CustomEvent('nivelReciclaje', {
       detail: '🌱 ¡Eres un buen reciclador! Sigue así para llegar a ser un maestro.'
     }));
-  } else if (puntaje === 100) {
+  } else {
     document.dispatchEvent(new CustomEvent('nivelReciclaje', {
       detail: '🏆 ¡Excelente! Has alcanzado el máximo puntaje. Eres un verdadero experto del reciclaje.'
     }));
   }
 
- if (basuraProcesada >= MAX_BASURA) {
-    let mensajeFinal = "🌍 ¡Juego terminado! Has completado la ronda.\n";
-
-    if (puntaje < 50) {
-      mensajeFinal += "Necesitas mejorar tus hábitos de reciclaje.";
-    } else if (puntaje < 100) {
-      mensajeFinal += "Buen trabajo, ¡eres un buen reciclador!";
-    } else {
-      mensajeFinal += "¡Excelente! Eres un experto del reciclaje ♻️";
-    }
-
-    document.dispatchEvent(new CustomEvent('finJuego', { detail: mensajeFinal }));
+  // Fin del juego si procesamos todas las basuras
+  if (basuraProcesada >= MAX_BASURA) {
+    document.dispatchEvent(new CustomEvent('finJuego', {
+      detail: generarMensajeFinal()
+    }));
   }
 });
 
-console.log("♻️ Lógica del juego cargada y lista para eventos con límite de 30 objetos.");
+// Reiniciar juego
+document.addEventListener('reiniciarJuego', () => {
+  puntaje = 0;
+  basuraProcesada = 0;
+  basuraGenerada = 0;
 
+  document.dispatchEvent(new CustomEvent('puntajeActualizado', { detail: puntaje }));
+  document.dispatchEvent(new CustomEvent('nivelReciclaje', {
+    detail: '♻️ ¡Juego reiniciado! Comienza a reciclar.'
+  }));
+
+  // Volver a lanzar basura desde el inicio
+  iniciarPartida();
+});
+
+// Helpers
+function generarMensajeFinal() {
+  let mensaje = `🌍 ¡Juego terminado! Has completado la ronda.\n`;
+  if (puntaje < 50) mensaje += "Necesitas mejorar tus hábitos de reciclaje.";
+  else if (puntaje < 100) mensaje += "Buen trabajo, ¡eres un buen reciclador!";
+  else mensaje += "¡Excelente! Eres un experto del reciclaje ♻️";
+  return mensaje;
+}
+
+// Iniciar partida
+function iniciarPartida() {
+  const intervalo = setInterval(() => {
+    if (basuraGenerada >= MAX_BASURA) {
+      clearInterval(intervalo);
+      return;
+    }
+    lanzarBasura();
+  }, 2500); 
+}
+
+// Arrancar al cargar
+iniciarPartida();
+
+console.log("♻️ Core del juego cargado y listo, límite máximo de basura:", MAX_BASURA);
