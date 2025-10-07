@@ -1,0 +1,40 @@
+/* ==========================
+   Header y barra de navegación
+========================== */
+.site-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+  background-color: #4CAF50;
+  color: white;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.site-header .logo h1 {
+  margin: 0;
+  font-size: 1.8rem;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+}
+
+.main-nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 25px;
+}
+
+.main-nav ul li a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.2s;
+}
+
+.main-nav ul li a:hover {
+  color: #c8e6c9;
+}
