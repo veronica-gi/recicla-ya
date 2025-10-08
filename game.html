@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Juego de Reciclaje</title>
+  <link rel="stylesheet" href="ui/css/styles.css" />
+</head>
+<body>
+
+  <div id="header"></div>
+
+  <main>
+    <section class="zona-contenedores">
+      <div class="contenedores">
+        <div class="contenedor azul" data-color="azul">
+          <div class="img-wrapper">
+            <img src="ui/assets/contenedor-azul.jpg" alt="Contenedor Azul" />
+          </div>
+         
+        </div>
+        <div class="contenedor amarillo" data-color="amarillo">
+          <div class="img-wrapper">
+            <img src="ui/assets/contenedor-amarillo.jpg" alt="Contenedor Amarillo" />
+          </div>
+          
+        </div>
+        <div class="contenedor verde" data-color="verde">
+          <div class="img-wrapper">
+            <img src="ui/assets/contenedor-verde.jpg" alt="Contenedor Verde" />
+          </div>
+        
+        </div>
+        <div class="contenedor marron" data-color="marron">
+          <div class="img-wrapper">
+            <img src="ui/assets/contenedor-marron.jpg" alt="Contenedor Marrón" />
+          </div>
+          
+        </div>
+      </div>
+    </section>
+
+    <section class="zona-juego">
+  <div id="zona-basura-cayendo"></div>
+</section>
+
+    <section class="zona-mensaje">
+      <div id="mensaje-juego" style="margin: 20px 0; font-weight: bold;"></div>
+      <div id="puntaje-juego" style="font-size: 1.2em;">Puntaje: 0</div>
+    </section>
+  </main>
+
+  <div id="footer"></div>
+
+  
+
+  <script src="core/game.js"></script>
+  <script src="ui/pages/gamePage.js"></script>
+  <script src="ui/js/loadHeader.js"></script>
+<script src="ui/js/loadFooter.js"></script>
+</body>
+</html>
+
+

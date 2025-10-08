@@ -3,62 +3,44 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Juego de Reciclaje</title>
+  <title>Importancia del Reciclaje</title>
   <link rel="stylesheet" href="ui/css/styles.css" />
+  <link rel="stylesheet" href="ui/css/header.css" />
+  <link rel="stylesheet" href="ui/css/footer.css" />
 </head>
 <body>
 
+  <!-- Aquí se inyecta el header -->
   <div id="header"></div>
 
   <main>
-    <section class="zona-contenedores">
-      <div class="contenedores">
-        <div class="contenedor azul" data-color="azul">
-          <div class="img-wrapper">
-            <img src="ui/assets/contenedor-azul.jpg" alt="Contenedor Azul" />
-          </div>
-         
-        </div>
-        <div class="contenedor amarillo" data-color="amarillo">
-          <div class="img-wrapper">
-            <img src="ui/assets/contenedor-amarillo.jpg" alt="Contenedor Amarillo" />
-          </div>
-          
-        </div>
-        <div class="contenedor verde" data-color="verde">
-          <div class="img-wrapper">
-            <img src="ui/assets/contenedor-verde.jpg" alt="Contenedor Verde" />
-          </div>
-        
-        </div>
-        <div class="contenedor marron" data-color="marron">
-          <div class="img-wrapper">
-            <img src="ui/assets/contenedor-marron.jpg" alt="Contenedor Marrón" />
-          </div>
-          
-        </div>
-      </div>
+    <section class="info-principal">
+      <h2>Por qué reciclar es importante</h2>
+      <p>
+        Reciclar ayuda a reducir la contaminación, ahorrar recursos naturales y proteger nuestro planeta. 
+        Con pequeños gestos diarios, cada uno puede hacer la diferencia.
+      </p>
+      <p>
+        Aprende cómo separar correctamente la basura y contribuye a un mundo más sostenible.
+      </p>
     </section>
 
-    <section class="zona-juego">
-  <div id="zona-basura-cayendo"></div>
-</section>
-
-    <section class="zona-mensaje">
-      <div id="mensaje-juego" style="margin: 20px 0; font-weight: bold;"></div>
-      <div id="puntaje-juego" style="font-size: 1.2em;">Puntaje: 0</div>
+    <section class="info-adicional">
+      <h3>Datos interesantes</h3>
+      <ul>
+        <li>Reciclar una lata de aluminio ahorra suficiente energía para encender una televisión durante 3 horas.</li>
+        <li>El vidrio puede reciclarse infinitas veces sin perder calidad.</li>
+        <li>Separar correctamente los residuos reduce significativamente la contaminación del suelo y agua.</li>
+      </ul>
     </section>
   </main>
 
+  <!-- Footer -->
   <div id="footer"></div>
 
-  
-
-  <script src="core/game.js"></script>
-  <script src="ui/pages/gamePage.js"></script>
+  <!-- JS para cargar header y footer -->
   <script src="ui/js/loadHeader.js"></script>
-<script src="ui/js/loadFooter.js"></script>
+  <script src="ui/js/loadFooter.js"></script>
+  
 </body>
 </html>
-
-
