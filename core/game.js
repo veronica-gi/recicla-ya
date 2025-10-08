@@ -84,17 +84,17 @@ document.addEventListener('validarReciclaje', e => {
 
   document.dispatchEvent(new CustomEvent('puntajeActualizado', { detail: puntaje }));
 
-  if (puntaje < 50) {
+  if (puntuación < 50) {
     document.dispatchEvent(new CustomEvent('nivelReciclaje', {
       detail: '♻️ Necesitas mejorar en reciclaje. ¡Sigue practicando!'
     }));
-  } else if (puntaje < 100) {
+  } else if (puntuación < 100) {
     document.dispatchEvent(new CustomEvent('nivelReciclaje', {
       detail: '🌱 ¡Eres un buen reciclador! Sigue así para llegar a ser un maestro.'
     }));
   } else {
     document.dispatchEvent(new CustomEvent('nivelReciclaje', {
-      detail: '🏆 ¡Excelente! Has alcanzado el máximo puntaje. Eres un verdadero experto del reciclaje.'
+      detail: '🏆 ¡Excelente! Has alcanzado la máxima puntuación. Eres un verdadero experto del reciclaje.'
     }));
   }
 
@@ -108,11 +108,11 @@ document.addEventListener('validarReciclaje', e => {
 
 // Reiniciar juego
 document.addEventListener('reiniciarJuego', () => {
-  puntaje = 0;
+  puntuación = 0;
   basuraProcesada = 0;
   basuraGenerada = 0;
 
-  document.dispatchEvent(new CustomEvent('puntajeActualizado', { detail: puntaje }));
+  document.dispatchEvent(new CustomEvent('puntuaciónActualizado', { detail: puntaje }));
   document.dispatchEvent(new CustomEvent('nivelReciclaje', {
     detail: '♻️ ¡Juego reiniciado! Comienza a reciclar.'
   }));

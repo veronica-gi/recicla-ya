@@ -82,7 +82,7 @@ botonReiniciar.addEventListener('click', () => {
 
 // Eventos del core (solo mostrar)
 document.addEventListener('mensaje', e => mensajeJuego.textContent = e.detail);
-document.addEventListener('puntajeActualizado', e => puntajeJuego.textContent = `Puntaje: ${e.detail}`);
+document.addEventListener('puntajeActualizado', e => puntajeJuego.textContent = `Puntuación: ${e.detail}`);
 document.addEventListener('nivelReciclaje', e => mensajeJuego.textContent = e.detail);
 document.addEventListener('finJuego', e => alert(e.detail));
 

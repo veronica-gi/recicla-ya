@@ -2,7 +2,6 @@ body {
   font-family: sans-serif;
   background: #f9f9f9;
   margin: 0;
-  padding: 20px;
   text-align: center;
 }
 
@@ -31,6 +30,8 @@ header h1 {
   background-color: #eee;
   border-radius: 10px;
   text-align: center;
+  border-top: 4px solid #4CAF50;
+  margin-top: 20px;
 }
 
 /* Contenedor para imágenes con tamaño fijo */
@@ -130,4 +131,26 @@ header h1 {
   box-shadow: 0 3px 5px rgba(0,0,0,0.2);
 }
 
+.zona-mensaje {
+  background-color: #e8f5e9; 
+  border: 2px solid #4CAF50; 
+  border-radius: 12px;
+  padding: 15px 20px;
+  margin: 20px auto; 
+  max-width: 400px; 
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.zona-mensaje #mensaje-juego {
+  font-weight: bold;
+  font-size: 1.2rem;
+  color: #2e7d32; 
+  margin-bottom: 10px;
+}
+
+.zona-mensaje #puntaje-juego {
+  font-size: 1.2rem;
+  color: #1b5e20; 
+}
 
