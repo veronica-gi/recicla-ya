@@ -1,6 +1,3 @@
-/* ==========================
-   Header y barra de navegación
-========================== */
 .site-header {
   display: flex;
   justify-content: space-between;
