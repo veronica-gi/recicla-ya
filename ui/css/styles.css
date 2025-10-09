@@ -154,3 +154,107 @@ header h1 {
   color: #1b5e20; 
 }
 
+.aprende-reciclar {
+  background-color: #e8f5e9; /* verde claro */
+  border: 2px solid #4CAF50;
+  border-radius: 12px;
+  padding: 40px 20px;
+  margin: 50px auto;
+  text-align: center;
+  max-width: 800px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.aprende-reciclar h2 {
+  color: #2e7d32;
+  font-size: 2rem;
+  margin-bottom: 15px;
+}
+
+.aprende-reciclar p {
+  font-size: 1.1rem;
+  margin-bottom: 25px;
+  color: #333;
+}
+
+.boton-juego {
+  background-color: #4CAF50;
+  color: white;
+  text-decoration: none;
+  padding: 12px 25px;
+  border-radius: 8px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+}
+
+.boton-juego:hover {
+  background-color: #45a049;
+  transform: scale(1.05);
+}
+
+.beneficios {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  flex-wrap: wrap;
+  padding: 40px;
+}
+
+.tarjeta {
+  width: 280px;
+  height: 350px;
+  perspective: 1000px;
+}
+
+.cara {
+  width: 100%;
+  height: 100%;
+  border-radius: 15px;
+  position: absolute;
+  backface-visibility: hidden;
+  transition: transform 0.8s;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+}
+
+.cara-frontal {
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.cara-frontal img {
+  width: 100%;
+  height: 75%;
+  object-fit: cover;
+}
+
+.cara-frontal h3 {
+  margin: 10px 0;
+  color: #2e7d32;
+}
+
+.cara-trasera {
+  background-color: #4CAF50;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+  transform: rotateY(180deg);
+}
+
+.tarjeta:hover .cara-frontal {
+  transform: rotateY(180deg);
+}
+
+.tarjeta:hover .cara-trasera {
+  transform: rotateY(360deg);
+}
+
+
