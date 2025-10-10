@@ -304,5 +304,16 @@ header h1 {
   transform: translateY(0);
 }
 
+.icono-girar {
+  width: 24px !important;
+  height: 24px !important;
+  margin-top: 10px;
+  display: inline-block;
+}
+
+
+
+
+
 
 
