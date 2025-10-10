@@ -311,6 +311,36 @@ header h1 {
   display: inline-block;
 }
 
+.contacto {
+  max-width: 600px;
+  margin: 50px auto;
+  padding: 0 20px;
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  color: #333;
+}
+
+.contacto h2, .contacto h3 {
+  color: #4CAF50;
+  margin-bottom: 15px;
+}
+
+.contacto p {
+  margin-bottom: 20px;
+}
+
+.contacto .email {
+  font-weight: bold;
+  color: #000;
+}
+
+.contacto section {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+  margin-bottom: 30px;
+}
 
 
 
