@@ -8,7 +8,7 @@
 - JavaScript
 
 ## Cómo usar
-Abrir `index.html` en tu navegador o visitar la demo online: [GitHub Pages link]
+Abrir `index.html` en tu navegador o visitar la demo online: [https://veronica-gi.github.io/recicla-ya/](https://veronica-gi.github.io/recicla-ya/)
 
 ## Autor
 **Verónica García Iglesias**  
