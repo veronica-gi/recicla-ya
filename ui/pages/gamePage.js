@@ -1,7 +1,7 @@
 // UI - Juego de Reciclaje (solo presentación)
 
 // Variables de estado solo para animación
-let basuraSeleccionada = null;
+let basuraActiva = null;
 
 // Referencias del DOM
 const zonaCaida = document.getElementById('zona-basura-cayendo');
@@ -17,11 +17,11 @@ function crearBasura(item) {
   basura.dataset.uid = `b-${Date.now()}-${Math.floor(Math.random() * 10000)}`;
   basura.textContent = item.emoji;
   basura.title = item.nombre;
-  basura.draggable = true;
   basura.style.left = `${Math.random() * 80 + 10}%`;
   basura.style.top = '0px';
   zonaCaida.appendChild(basura);
 
+  basuraActiva = basura; // <-- guardamos la basura activa
   animarCaida(basura);
 }
 
@@ -34,38 +34,28 @@ function animarCaida(elemento) {
     elemento.style.top = y + 'px';
     if (y > zonaCaida.offsetHeight - 80) {
       clearInterval(id);
+      if (basuraActiva === elemento) basuraActiva = null;
       elemento.remove();
     }
   }, 50);
   elemento._fallInterval = id;
 }
 
-// Arrastrar y soltar (solo envía eventos)
-document.addEventListener('dragstart', e => {
-  if (e.target.classList.contains('item-cayendo')) {
-    basuraSeleccionada = e.target.dataset.tipo;
-    e.dataTransfer.setData('text/plain', basuraSeleccionada);
-    e.dataTransfer.setData('text/uid', e.target.dataset.uid);
-    e.target.style.opacity = '0.5';
-  }
-});
-
-document.addEventListener('dragend', e => {
-  if (e.target.classList.contains('item-cayendo')) {
-    if (e.target._fallInterval) clearInterval(e.target._fallInterval);
-    e.target.remove();
-  }
-});
-
+// Seleccionar contenedor haciendo click
 contenedores.forEach(contenedor => {
-  contenedor.addEventListener('dragover', e => e.preventDefault());
-  contenedor.addEventListener('drop', e => {
-    const tipoBasura = e.dataTransfer.getData('text/plain');
+  contenedor.addEventListener('click', () => {
+    if (!basuraActiva) return; // no hay basura para seleccionar
+    const tipoBasura = basuraActiva.dataset.tipo;
     const colorContenedor = contenedor.getAttribute('data-color');
+
     document.dispatchEvent(new CustomEvent('validarReciclaje', {
       detail: { tipoBasura, colorContenedor }
     }));
-    basuraSeleccionada = null;
+
+    // Detener caída y eliminar del DOM
+    if (basuraActiva._fallInterval) clearInterval(basuraActiva._fallInterval);
+    basuraActiva.remove();
+    basuraActiva = null;
   });
 });
 
@@ -79,7 +69,6 @@ botonReiniciar.addEventListener('click', () => {
   document.dispatchEvent(new CustomEvent('reiniciarJuego'));
 });
 
-
 // Eventos del core (solo mostrar)
 document.addEventListener('mensaje', e => mensajeJuego.textContent = e.detail);
 document.addEventListener('puntajeActualizado', e => puntajeJuego.textContent = `Puntuación: ${e.detail}`);
@@ -92,48 +81,5 @@ document.addEventListener('crearBasura', e => {
 });
 
 
-// 📱 Soporte táctil para móviles
-let emojiActivo = null;
-let toqueInicial = { x: 0, y: 0 };
 
-zonaCaida.addEventListener('touchstart', e => {
-  const toque = e.touches[0];
-  const objetivo = document.elementFromPoint(toque.clientX, toque.clientY);
-  if (objetivo && objetivo.classList.contains('item-cayendo')) {
-    emojiActivo = objetivo;
-    toqueInicial = { x: toque.clientX, y: toque.clientY };
-    emojiActivo.style.opacity = '0.5';
-    if (emojiActivo._fallInterval) clearInterval(emojiActivo._fallInterval); // detener la caída
-  }
-});
-
-zonaCaida.addEventListener('touchmove', e => {
-  if (!emojiActivo) return;
-  const toque = e.touches[0];
-  const dx = toque.clientX - toqueInicial.x;
-  const dy = toque.clientY - toqueInicial.y;
-  emojiActivo.style.transform = `translate(${dx}px, ${dy}px)`;
-});
-
-zonaCaida.addEventListener('touchend', e => {
-  if (!emojiActivo) return;
-  emojiActivo.style.opacity = '1';
-  emojiActivo.style.transform = '';
-
-  // Detectar si se soltó sobre un contenedor
-  const toque = e.changedTouches[0];
-  const elementoSoltado = document.elementFromPoint(toque.clientX, toque.clientY);
-  const contenedor = elementoSoltado?.closest('.contenedor');
-
-  if (contenedor) {
-    const tipoBasura = emojiActivo.dataset.tipo;
-    const colorContenedor = contenedor.getAttribute('data-color');
-    document.dispatchEvent(new CustomEvent('validarReciclaje', {
-      detail: { tipoBasura, colorContenedor }
-    }));
-  }
-
-  emojiActivo.remove();
-  emojiActivo = null;
-});
 
