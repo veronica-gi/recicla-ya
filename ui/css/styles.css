@@ -90,6 +90,7 @@ header h1 {
   cursor: grab;
   user-select: none;
   transition: transform 0.2s, opacity 0.3s;
+  touch-action: none;
 }
 
 .item-cayendo:hover {

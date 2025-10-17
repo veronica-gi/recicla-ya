@@ -92,4 +92,48 @@ document.addEventListener('crearBasura', e => {
 });
 
 
+// 📱 Soporte táctil para móviles
+let emojiActivo = null;
+let toqueInicial = { x: 0, y: 0 };
+
+zonaCaida.addEventListener('touchstart', e => {
+  const toque = e.touches[0];
+  const objetivo = document.elementFromPoint(toque.clientX, toque.clientY);
+  if (objetivo && objetivo.classList.contains('item-cayendo')) {
+    emojiActivo = objetivo;
+    toqueInicial = { x: toque.clientX, y: toque.clientY };
+    emojiActivo.style.opacity = '0.5';
+    if (emojiActivo._fallInterval) clearInterval(emojiActivo._fallInterval); // detener la caída
+  }
+});
+
+zonaCaida.addEventListener('touchmove', e => {
+  if (!emojiActivo) return;
+  const toque = e.touches[0];
+  const dx = toque.clientX - toqueInicial.x;
+  const dy = toque.clientY - toqueInicial.y;
+  emojiActivo.style.transform = `translate(${dx}px, ${dy}px)`;
+});
+
+zonaCaida.addEventListener('touchend', e => {
+  if (!emojiActivo) return;
+  emojiActivo.style.opacity = '1';
+  emojiActivo.style.transform = '';
+
+  // Detectar si se soltó sobre un contenedor
+  const toque = e.changedTouches[0];
+  const elementoSoltado = document.elementFromPoint(toque.clientX, toque.clientY);
+  const contenedor = elementoSoltado?.closest('.contenedor');
+
+  if (contenedor) {
+    const tipoBasura = emojiActivo.dataset.tipo;
+    const colorContenedor = contenedor.getAttribute('data-color');
+    document.dispatchEvent(new CustomEvent('validarReciclaje', {
+      detail: { tipoBasura, colorContenedor }
+    }));
+  }
+
+  emojiActivo.remove();
+  emojiActivo = null;
+});
 
