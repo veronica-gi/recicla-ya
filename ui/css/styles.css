@@ -32,6 +32,13 @@ header h1 {
   text-align: center;
   border-top: 4px solid #4CAF50;
   margin-top: 20px;
+  cursor: pointer; 
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.contenedor.seleccionado {
+  transform: scale(1.1);
+  box-shadow: 0 0 10px #4CAF50;
 }
 
 /* Contenedor para imágenes con tamaño fijo */
@@ -150,10 +157,6 @@ header h1 {
   margin-bottom: 10px;
 }
 
-.zona-mensaje #puntaje-juego {
-  font-size: 1.2rem;
-  color: #1b5e20; 
-}
 
 .aprende-reciclar {
   background-color: #e8f5e9; /* verde claro */

@@ -8,6 +8,7 @@ const zonaCaida = document.getElementById('zona-basura-cayendo');
 const contenedores = document.querySelectorAll('.contenedor');
 const mensajeJuego = document.getElementById('mensaje-juego');
 const puntajeJuego = document.getElementById('puntaje-juego');
+const nivelJuego = document.getElementById('nivel-juego');
 
 // Crear basura (solo animación)
 function crearBasura(item) {
@@ -47,6 +48,11 @@ function animarCaida(elemento) {
 contenedores.forEach(contenedor => {
   contenedor.addEventListener('click', () => {
     if (!basuraActiva) return; // no hay basura para seleccionar
+
+    // Añadir clase temporal para mostrar selección
+    contenedor.classList.add('seleccionado');
+    setTimeout(() => contenedor.classList.remove('seleccionado'), 300);
+
     const tipoBasura = basuraActiva.dataset.tipo;
     const colorContenedor = contenedor.getAttribute('data-color');
 
@@ -72,13 +78,26 @@ botonReiniciar.addEventListener('click', () => {
   // Limpiar basura actual
   zonaCaida.innerHTML = '';
   basuraActiva = null;
+
+  // Limpiar mensajes y nivel
+  mensajeJuego.textContent = '';
+  nivelJuego.textContent = '';
+  
   document.dispatchEvent(new CustomEvent('reiniciarJuego'));
 });
 
 // Eventos del core (solo mostrar)
-document.addEventListener('mensaje', e => mensajeJuego.textContent = e.detail);
+document.addEventListener('mensaje', e => {
+  mensajeJuego.textContent = e.detail;
+  // Cambiar color según acierto o fallo
+  if (e.detail.includes('✅')) mensajeJuego.style.color = 'lightgreen';
+  else if (e.detail.includes('❌')) mensajeJuego.style.color = 'red';
+});
 document.addEventListener('puntajeActualizado', e => puntajeJuego.textContent = `Puntuación: ${e.detail}`);
-document.addEventListener('nivelReciclaje', e => mensajeJuego.textContent = e.detail);
+document.addEventListener('nivelReciclaje', e => {
+  nivelJuego.textContent = e.detail;
+});
+
 document.addEventListener('finJuego', e => alert(e.detail));
 
 // Escuchar al core para crear basura
