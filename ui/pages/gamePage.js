@@ -11,6 +11,8 @@ const puntajeJuego = document.getElementById('puntaje-juego');
 
 // Crear basura (solo animación)
 function crearBasura(item) {
+  if (basuraActiva) return;
+
   const basura = document.createElement('div');
   basura.classList.add('item-cayendo');
   basura.dataset.tipo = item.tipo;
@@ -66,6 +68,10 @@ botonReiniciar.className = 'boton-reiniciar';
 document.body.appendChild(botonReiniciar);
 
 botonReiniciar.addEventListener('click', () => {
+
+  // Limpiar basura actual
+  zonaCaida.innerHTML = '';
+  basuraActiva = null;
   document.dispatchEvent(new CustomEvent('reiniciarJuego'));
 });
 
