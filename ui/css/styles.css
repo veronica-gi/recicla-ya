@@ -29,11 +29,13 @@ header h1 {
   padding: 0px;
   background-color: #eee;
   border-radius: 10px;
+  overflow: hidden;
   text-align: center;
   border-top: 4px solid #4CAF50;
   margin-top: 10px;
   cursor: pointer; 
   transition: transform 0.2s, box-shadow 0.2s;
+  
 }
 
 .contenedor.seleccionado {
@@ -50,13 +52,14 @@ header h1 {
   justify-content: center;
   align-items: center;
   overflow: hidden;
-  border-radius: 8px;
+  border-radius: 10px;
 }
 
 .img-wrapper img {
   max-width: 100%;
   max-height: 100%;
   object-fit: contain;
+  object-fit: cover;
   display: block;
 }
 
