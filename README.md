@@ -1,15 +1,15 @@
 # ¡Recicla YA!
 
-**Recicla YA!** es una aplicación educativa sobre la importancia del reciclaje y la sostenibilidad. Contiene un juego interactivo para aprender a reciclar de forma divertida, además de secciones informativas con datos interesantes y consejos prácticos.
+**Recicla YA!** is an educational application about the importance of recycling and sustainability. It includes an interactive game to learn how to recycle in a fun way, as well as informational sections with interesting facts and practical tips.
 
-## Tecnologías
+## Technologies
 - HTML
 - CSS
 - JavaScript
 
-## Cómo usar
-Abrir `index.html` en tu navegador o visitar la demo online: [https://veronica-gi.github.io/recicla-ya/](https://veronica-gi.github.io/recicla-ya/)
+## How to Use
+Open index.html in your browser or visit the online demo: [https://veronica-gi.github.io/recicla-ya/]
 
-## Autor
+## Author
 **Verónica García Iglesias**  
 Email: veronicagaiglesias@gmail.com
